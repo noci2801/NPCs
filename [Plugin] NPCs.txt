@@ -1,0 +1,49 @@
+[size=12]Das Plugin ist ein Service Tool, mit dem man die bislang möglichen Einstellungen an NPC vornehmen kann.[/size]
+
+Wie Gesundheit, Alter, Hunger, Name, Unbesiegbar, fixiert und alarmiert.
+Weiterhin gibt es eine Folgen-Funktion.
+
+noch geplant: NPC Eigentumsverhältnisse von ABM berücksichtigen.
+
+Nach dem Hinzufügen des Plugins und dem ersten Start werden alle dazugehörigen Dateien erstellt.
+
+[list][*]NPCs muss zunächst aktiviert werden, entweder im Chat mit 
+[tt]/npc follow [true/1|false/0][/tt] oder über eine Taste, die in der Konfiguration 
+[tt]plugins\NPCs\config\Plugin.property:KEY_follow_tog[/tt] eingestellt wurde. (voreingestellt leer, deaktiviert | Empfehlung KEY_H).
+[/list]
+[list][*]Ist NPCs aktiviert werden weitere Informationen eingeblendet:
+[list][*]Informationsausgabe, (Voreingestellt, Rechts kurz unter der Schnellleiste.)
+[*]Anzeige wie viel NPCs Folgen, (Voreingestellt, oben in der Mitte).
+[/list][/list]
+[list][*]Wird die Bildschirm Mittelpunkt über ein NPC geführt, wird die Info Ausgabe aktualisiert. 
+(ist kein NPC mehr anvisiert, wird die Info nach [tt]plugins\NPCs\config\Plugin.property:TIMER_Info[/tt]sec. Minimiert).
+[/list]
+[list][*]Im Bildschirm Mittelpunkt erscheint eine Anzeige des Namens und ggf. Information über Folge Status. 
+(ist kein NPC mehr anvisiert, wird die Info nach [tt]plugins\NPCs\config\Plugin.property:TIMER_Screen[/tt]sec. Ausgeblendet)
+[/list]
+[list][*]Für das Anzeigen des Options-Menüs ist die Taste [F] 
+[tt]plugins\NPCs\config\Plugin.property:KEY_follow_akt[/tt](Voreingestellt [F], geplant: nach dem entsprechendem API update, kann die Spieler eigene Interaktion-taste verwendet werden) vorgesehen.
+[/list]
+[list][*]Das NPC-Option-Menü wird nur in dem Bereich zwischen 
+[tt]plugins\NPCs\config\Plugin.property:KEY_interakt_rad[/tt] (Voreingestellt: 4.5, entspricht dem RW Interaktion Bereich) und 
+[tt]plugins\NPCs\config\Plugin.property:KEY_follow_rad[/tt] (Voreingestellt: -1, unendlich).
+[list][*]Die RW Interaktion wird nicht geblockt um nahezu unbeschwert Spielen zu können, deswegen existiert der Mindestabstand und sollte nicht unter 4.3 gestellt werden. Die Entfernung wird in der Info angezeigt und Farblich abgesetzt.
+[*]Das Menü kann über die Maus oder die Eingabe der Schnelltasten gesteuert werden. Wird das Menü angezeigt, kann es auch mit ESC geschlossen werden. Läuft der NPC weite während das Menü offen ist, ist das kein Problem.
+[/list]
+[size=12]Das Folgen ist folgendermaßen aufgebaut:[/size]
+[list][*]Die NPCs werden in einer Reihe hinter dem Spieler, in einer Entfernung von
+ [tt]plugins\NPCs\config\Plugin.property:FOLLOW_NewPos[/tt](Voreingestellt: 5.0) Platziert.
+[*]Die abstände zwischen den NPCs wird durch 
+[tt]plugins\NPCs\config\Plugin.property:FOLLOW_NpcDistance[/tt](Voreingestellt: 7.5) bestimmt.
+[*]Für diesen Punkt wird jetzt, für den einzelnen NPC, noch zufällig um +-
+[tt]plugins\NPCs\config\Plugin.property:FOLLOW_NpcRandom[/tt](Voreingestellt: 2.5) Blöcke verschoben. So entsteht ein etwas dynamischeres Muster ^^.
+[/list]
+[list][*]Ist die Entfernung zum Ersten NPC in der Liste über
+[tt]plugins\NPCs\config\Plugin.property:FOLLOW_NewPosTrigger[/tt](Voreingestellt: 10.0) und die letzte Positionsberechnung weiter als 
+[tt]plugins\NPCs\config\Plugin.property:FOLLOW_NoNewPos[/tt](Voreingestellt: 3.0) entfernt, wird eine Neue Positionsberechnung durchgeführt und de NPCs dort hingeschickt.
+[*]Ist der NPC weiter als 
+[tt]plugins\NPCs\config\Plugin.property:FOLLOW_NewPosRun[/tt](Voreingestellt: 15.0) entfernt wird er Alarmiert und rennt damit zu der Position(Bekannte Bugs: Aggressive NPCs greifen den naheliegendsten Spieler an und laufen nicht weiter). Am Ziel angekommen wird er wieder Normalisiert(Bekannte Bugs: ist der Spieler zu Nahe Fliehen friedliche NPC und Laufen nicht mehr an ihren Platz).
+[/list]
+
+HUD-Confighttps://javadoc.rising-world.net/net/risingworld/api/gui/PivotPosition.html
+[/list]
