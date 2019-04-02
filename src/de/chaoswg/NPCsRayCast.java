@@ -39,10 +39,10 @@ public class NPCsRayCast implements Listener {
     @EventMethod
     public void onPlayerChangePosition(PlayerChangePositionEvent event){
         Player player = event.getPlayer();
-        
+        if(plugin.getDebug()>2){System.out.println("[" + plugin.getDescription("name") + "] "+"PlayerChangePosition " + "Folow["+player.getAttribute(plugin.plA.npcFollow)+"]" + "Spwan["+player.getAttribute(plugin.plA.isSPAWN)+"] " );}
         if (player.getAttribute(plugin.plA.npcFollow)!=null) if((boolean)player.getAttribute(plugin.plA.npcFollow)){
             if (player.getAttribute(plugin.plA.isSPAWN)!=null) if((boolean)player.getAttribute(plugin.plA.isSPAWN)){
-                //if(plugin.getDebug()>0){System.out.println("[" + plugin.getDescription("name") + "] "+"Npc found: " + System.currentTimeMillis()+" -|- "+((String) player.getAttribute(plugin.plA.timerWaitRaycast)) );}
+                if(plugin.getDebug()>2){System.out.println("[" + plugin.getDescription("name") + "] "+"Npc found: " + System.currentTimeMillis()+" -|- "+((String) player.getAttribute(plugin.plA.timerWaitRaycast)) );}
                 if (System.currentTimeMillis()> Long.parseLong((String) player.getAttribute(plugin.plA.timerWaitRaycast)) ){
                     //perform raycast (collision type: npcs only)
                     player.raycast(CollisionType.NPCS, (RayCastResult result) -> {
