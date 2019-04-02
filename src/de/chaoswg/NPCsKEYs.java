@@ -54,6 +54,7 @@ public class NPCsKEYs implements Listener {
                 player.setAttribute(plugin.plA.timerKey,tNow-1);
                 final CRT.ClassLambadHelper l = new CRT.ClassLambadHelper();
                 l.n = key;
+                if(plugin.getDebug()>2) {System.out.println("[" + plugin.getDescription("name") + "] "+"PlayerKeyEvent " + "doRayCast" );}
                 player.raycast(CollisionType.NPCS, (RayCastResult result) -> {
                     if(result != null){
                         Object obj = result.getCollisionObject();
